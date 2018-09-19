@@ -63,13 +63,13 @@ public class Main extends Application {
         Line barrehor2 = new Line(600,240,634,240);
 
         window1.setFill(Color.AQUA);
-        window1.setStroke(Color.BROWN);
+        window1.setStroke(Color.LIGHTGREY);
         window2.setFill(Color.AQUA);
-        window2.setStroke(Color.BROWN);
-        barreveti.setStroke(Color.BROWN);
-        barrevet2.setStroke(Color.BROWN);
-        barrehor1.setStroke(Color.BROWN);
-        barrehor2.setStroke(Color.BROWN);
+        window2.setStroke(Color.LIGHTGREY);
+        barreveti.setStroke(Color.LIGHTGREY);
+        barrevet2.setStroke(Color.LIGHTGREY);
+        barrehor1.setStroke(Color.LIGHTGREY);
+        barrehor2.setStroke(Color.LIGHTGREY);
 
         Rectangle porte1 = new Rectangle(170,245,20,35);
         Rectangle porte2 = new Rectangle(570,245,20,35);
@@ -79,34 +79,121 @@ public class Main extends Application {
         porte1.setFill(Color.SADDLEBROWN);
         porte2.setFill(Color.SADDLEBROWN);
 
-        QuadCurve aileG1 = new QuadCurve(30,120,50,80,70,130);
-        aileG1.setStrokeWidth(2);
+        QuadCurve aileG1 = new QuadCurve(30,100,50,90,70,130);
+        aileG1.setStrokeWidth(1);
         aileG1.setStroke(Color.BLACK);
-        aileG1.setFill(Color.WHITE);
-        QuadCurve aileD1 = new QuadCurve(70,130,90,80,110,120);
-        aileD1.setStrokeWidth(2);
+        aileG1.setFill(Color.LIGHTGREY);
+
+        QuadCurve aileD1 = new QuadCurve(70,130,90,90,110,100);
+        aileD1.setStrokeWidth(1);
         aileD1.setStroke(Color.BLACK);
-        aileD1.setFill(Color.WHITE);
-        QuadCurve aileG2 = new QuadCurve(150,60,170,20,190,70);
-        aileG2.setStrokeWidth(2);
+        aileD1.setFill(Color.LIGHTGREY);
+
+        QuadCurve aileG2 = new QuadCurve(150,40,170,30,190,70);
+        aileG2.setStrokeWidth(1);
         aileG2.setStroke(Color.BLACK);
-        aileG2.setFill(Color.WHITE);
-        QuadCurve aileD2 = new QuadCurve(190,70,210,20,230,60);
-        aileD2.setStrokeWidth(2);
+        aileG2.setFill(Color.LIGHTGREY);
+
+        QuadCurve aileD2 = new QuadCurve(190,70,210,30,230,40);
+        aileD2.setStrokeWidth(1);
         aileD2.setStroke(Color.BLACK);
-        aileD2.setFill(Color.WHITE);
+        aileD2.setFill(Color.LIGHTGREY);
 
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.setAutoReverse(true);
-        KeyValue dsf = new KeyValue(aileD1.startXProperty(),54,Interpolator.LINEAR);
-        KeyValue dsdgh = new KeyValue(aileD1.startXProperty(),55,Interpolator.LINEAR);
-        KeyFrame gfd = new KeyFrame(Duration.seconds(1),dsf,dsdgh);
+
+        KeyValue aD1M = new KeyValue(aileD1.startYProperty(),120,Interpolator.LINEAR);
+        KeyValue aG1M = new KeyValue(aileG1.endYProperty(),120,Interpolator.LINEAR);
+        KeyValue aD1finY = new KeyValue(aileD1.endYProperty(),125,Interpolator.LINEAR);
+        KeyValue aD1finX = new KeyValue(aileD1.endXProperty(),115,Interpolator.LINEAR);
+        KeyValue aG1finY = new KeyValue(aileG1.startYProperty(),125,Interpolator.LINEAR);
+        KeyValue aG1finX = new KeyValue(aileG1.startXProperty(),25,Interpolator.LINEAR);
+
+        KeyValue aD2M = new KeyValue(aileD2.startYProperty(),60,Interpolator.LINEAR);
+        KeyValue aG2M = new KeyValue(aileG2.endYProperty(),60,Interpolator.LINEAR);
+        KeyValue aD2finY = new KeyValue(aileD2.endYProperty(),65,Interpolator.LINEAR);
+        KeyValue aD2finX = new KeyValue(aileD2.endXProperty(),235,Interpolator.LINEAR);
+        KeyValue aG2finY = new KeyValue(aileG2.startYProperty(),65,Interpolator.LINEAR);
+        KeyValue aG2finX = new KeyValue(aileG2.startXProperty(),145,Interpolator.LINEAR);
+
+        KeyFrame gfd = new KeyFrame(Duration.seconds(1),aD1M,aG1M,aD1finY,aG1finY,aD1finX,aG1finX,aD2M,aG2M,aD2finY,aD2finX,aG2finY,aG2finX);
 
         timeline.getKeyFrames().addAll(gfd);
         timeline.play();
 
         Group ailes = new Group(aileG1,aileD1,aileG2,aileD2);
+
+        Polygon star1 = new Polygon(205.0,150.0, 217.0,186.0, 256.0,186.0,
+                223.0,208.0, 233.0,244.0, 205.0,222.0, 177.0,244.0, 187.0,208.0,
+                154.0,186.0, 193.0,186.0);
+        star1.setScaleX(0.4);
+        star1.setScaleY(0.4);
+        star1.setTranslateX(420);
+        star1.setTranslateY(-110);
+
+        Polygon star2 = new Polygon(205.0,150.0, 217.0,186.0, 256.0,186.0,
+                223.0,208.0, 233.0,244.0, 205.0,222.0, 177.0,244.0, 187.0,208.0,
+                154.0,186.0, 193.0,186.0);
+        star2.setScaleX(0.3);
+        star2.setScaleY(0.3);
+        star2.setTranslateX(350);
+        star2.setTranslateY(-130);
+
+        Polygon star3 = new Polygon(205.0,150.0, 217.0,186.0, 256.0,186.0,
+                223.0,208.0, 233.0,244.0, 205.0,222.0, 177.0,244.0, 187.0,208.0,
+                154.0,186.0, 193.0,186.0);
+        star3.setScaleX(0.2);
+        star3.setScaleY(0.2);
+        star3.setTranslateX(300);
+        star3.setTranslateY(-100);
+
+        Polygon star4 = new Polygon(205.0,150.0, 217.0,186.0, 256.0,186.0,
+                223.0,208.0, 233.0,244.0, 205.0,222.0, 177.0,244.0, 187.0,208.0,
+                154.0,186.0, 193.0,186.0);
+        star4.setScaleX(0.3);
+        star4.setScaleY(0.3);
+        star4.setTranslateX(260);
+        star4.setTranslateY(-160);
+
+        star1.setFill(Color.YELLOW);
+        star2.setFill(Color.YELLOW);
+        star3.setFill(Color.YELLOW);
+        star4.setFill(Color.YELLOW);
+
+        Group stars = new Group(star1,star2,star3,star4);
+
+        FadeTransition transStar1 = new FadeTransition(
+                Duration.seconds(2),star1
+        );
+        transStar1.setToValue(0);
+        transStar1.setCycleCount(Timeline.INDEFINITE);
+        transStar1.setAutoReverse(true);
+        transStar1.play();
+
+        FadeTransition transStar2 = new FadeTransition(
+                Duration.seconds(1),star2
+        );
+        transStar2.setToValue(0);
+        transStar2.setCycleCount(Timeline.INDEFINITE);
+        transStar2.setAutoReverse(true);
+        transStar2.play();
+
+        FadeTransition transStar3 = new FadeTransition(
+                Duration.seconds(4),star3
+        );
+        transStar3.setToValue(0);
+        transStar3.setCycleCount(Timeline.INDEFINITE);
+        transStar3.setAutoReverse(true);
+        transStar3.play();
+
+        FadeTransition transStar4 = new FadeTransition(
+                Duration.seconds(3),star4
+        );
+        transStar4.setToValue(0);
+        transStar4.setCycleCount(Timeline.INDEFINITE);
+        transStar4.setAutoReverse(true);
+        transStar4.play();
 
         Circle luneCercle = new Circle(725,75,30,Color.LIGHTGRAY);
 
@@ -158,7 +245,8 @@ public class Main extends Application {
         Group porte = new Group(porte1,porte2,knob1,knob2);
         Group maison = new Group(toit1,mur1,mur2,toit2,window,porte);
 
-        Group root = new Group(back,maison,soleil,luneCercle,ailes);
+
+        Group root = new Group(back,maison,soleil,luneCercle,ailes,stars);
 
         primaryStage.setScene((new Scene(root)));
         primaryStage.show();
